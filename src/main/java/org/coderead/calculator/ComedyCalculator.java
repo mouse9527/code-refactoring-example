@@ -21,11 +21,15 @@ public class ComedyCalculator extends AbstractPerformanceCalculator {
 
     @Override
     public double getAmount(Performance performance) {
-        int result = BASIC_AMOUNT;
+        return BASIC_AMOUNT + BASIC_AMOUNT_PRE_AUDIENCE * performance.getAudience() + getExtraAmount(performance);
+    }
+
+    private int getExtraAmount(Performance performance) {
         int extraAudience = performance.getAudience() - 20;
         if (extraAudience > 0) {
-            result = result + (BASIC_EXTRA_AMOUNT + AMOUNT_PRE_EXTRA_AUDIENCE * extraAudience);
+            return BASIC_EXTRA_AMOUNT + AMOUNT_PRE_EXTRA_AUDIENCE * extraAudience;
+        } else {
+            return 0;
         }
-        return result + BASIC_AMOUNT_PRE_AUDIENCE * performance.getAudience();
     }
 }
