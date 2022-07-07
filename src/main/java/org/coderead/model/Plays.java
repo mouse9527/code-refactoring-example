@@ -14,14 +14,14 @@ public class Plays {
     }
 
     double getVolumeCredits(Performance it) {
-        return getPlays().get(it.getPlayId()).getVolumeCredits(it);
+        return getPlay(it).getVolumeCredits(it);
+    }
+
+    Amount getAmount(Performance it) {
+        return getPlay(it).getAmount(it);
     }
 
     Play getPlay(Performance it) {
         return getPlays().get(it.getPlayId());
-    }
-
-    Amount getAmount(Performance it) {
-        return getPlays().get(it.getPlayId()).getAmount(it);
     }
 }
