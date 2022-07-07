@@ -3,8 +3,8 @@ package org.coderead.calculator;
 import org.coderead.model.Performance;
 
 public class ActionCalculator extends AbstractPerformanceCalculator {
-
     private static final int BASIC_AMOUNT = 40000;
+    private static final int AMOUNT_PRE_EXTRA_AUDIENCE = 1000;
 
     public ActionCalculator() {
     }
@@ -16,11 +16,10 @@ public class ActionCalculator extends AbstractPerformanceCalculator {
 
     @Override
     public double getAmount(Performance performance) {
-        int extraAudience = performance.getAudience() - 30;
-        if (extraAudience > 0) {
-            return BASIC_AMOUNT + 1000 * extraAudience;
-        }
+        return BASIC_AMOUNT + AMOUNT_PRE_EXTRA_AUDIENCE * getExtraAudience(performance);
+    }
 
-        return BASIC_AMOUNT;
+    private int getExtraAudience(Performance performance) {
+        return Math.max(performance.getAudience() - 30, 0);
     }
 }
