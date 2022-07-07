@@ -34,4 +34,8 @@ public class Play {
     Amount getAmount(Performance performance) {
         return new Amount(AbstractPerformanceCalculator.of(getType()).getAmount(performance));
     }
+
+    double getVolumeCredits(Performance performance) {
+        return AbstractPerformanceCalculator.of(getType()).getVolumeCredits(performance);
+    }
 }

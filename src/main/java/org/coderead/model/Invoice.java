@@ -1,7 +1,6 @@
 package org.coderead.model;
 
 import org.coderead.Amount;
-import org.coderead.calculator.AbstractPerformanceCalculator;
 
 import java.util.List;
 import java.util.Map;
@@ -60,7 +59,7 @@ public class Invoice {
         int volumeCredits = 0;
         for (Performance performance : getPerformances()) {
             Play play = plays.get(performance.getPlayId());
-            volumeCredits += AbstractPerformanceCalculator.of(play.getType()).getVolumeCredits(performance);
+            volumeCredits += play.getVolumeCredits(performance);
         }
         return volumeCredits;
     }
