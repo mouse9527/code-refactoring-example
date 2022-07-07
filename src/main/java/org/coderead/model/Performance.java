@@ -27,4 +27,8 @@ public class Performance {
     public void setAudience(int audience) {
         this.audience = audience;
     }
+
+    String formatPerformances(Play play) {
+        return String.format(" %s: %s (%d seats)\n", play.getName(), play.getAmount(this).formatUSD(), getAudience());
+    }
 }

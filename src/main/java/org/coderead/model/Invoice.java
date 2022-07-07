@@ -35,28 +35,15 @@ public class Invoice {
     }
 
     public String getStatement(Map<String, Play> plays) {
-        return getCustomer() + formatPerformancesV2(plays);
+        return getCustomer() + formatPerformances(plays);
     }
 
     private String formatPerformances(Map<String, Play> plays) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Performance performance : getPerformances()) {
-            Play play = plays.get(performance.getPlayId());
-            stringBuilder.append(formatPerformances(performance, play));
-        }
-        return stringBuilder.toString();
-    }
-
-    private String formatPerformancesV2(Map<String, Play> plays) {
         return getPerformances().stream()
-                .map(it -> formatPerformances(it, plays.get(it.getPlayId())))
+                .map(it -> it.formatPerformances(plays.get(it.getPlayId())))
                 .collect(Collectors.joining());
     }
 
-
-    private String formatPerformances(Performance performance, Play play) {
-        return String.format(" %s: %s (%d seats)\n", play.getName(), play.getAmount(performance).formatUSD(), performance.getAudience());
-    }
 
     public Amount getTotalAmount(Map<String, Play> plays) {
         Double totalAmount = getPerformances().stream()
