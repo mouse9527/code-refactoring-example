@@ -4,6 +4,9 @@ import org.coderead.model.Performance;
 
 public class LoveCalculator extends AbstractPerformanceCalculator {
 
+    private static final int BASIC_AMOUNT = 40000;
+    private static final int AMOUNT_PRE_EXTRA_AUDIENCE = 1000;
+
     @Override
     public double getVolumeCredits(Performance performance) {
         return Math.max(performance.getAudience() - 30, 0);
@@ -11,11 +14,10 @@ public class LoveCalculator extends AbstractPerformanceCalculator {
 
     @Override
     public double getAmount(Performance performance) {
-        int thisAmount = 40000;
-        int extraAudience = performance.getAudience() - 30;
-        if (extraAudience > 0) {
-            thisAmount += 1000 * extraAudience;
-        }
-        return thisAmount;
+        return BASIC_AMOUNT + AMOUNT_PRE_EXTRA_AUDIENCE * getExtraAudience(performance);
+    }
+
+    private int getExtraAudience(Performance performance) {
+        return Math.max(performance.getAudience() - 30, 0);
     }
 }
