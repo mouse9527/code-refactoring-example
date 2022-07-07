@@ -3,6 +3,12 @@ package org.coderead.calculator;
 import org.coderead.model.Performance;
 
 public class ComedyCalculator extends AbstractPerformanceCalculator {
+
+    private static final int BASIC_AMOUNT_PRE_AUDIENCE = 300;
+    private static final int BASIC_AMOUNT = 30000;
+    private static final int BASIC_EXTRA_AMOUNT = 10000;
+    private static final int AMOUNT_PRE_EXTRA_AUDIENCE = 500;
+
     public ComedyCalculator() {
     }
 
@@ -15,10 +21,11 @@ public class ComedyCalculator extends AbstractPerformanceCalculator {
 
     @Override
     public double getAmount(Performance performance) {
-        int thisAmount = 30000;
-        if (performance.getAudience() > 20) {
-            thisAmount = thisAmount + (10000 + 500 * (performance.getAudience() - 20));
+        int result = BASIC_AMOUNT;
+        int extraAudience = performance.getAudience() - 20;
+        if (extraAudience > 0) {
+            result = result + (BASIC_EXTRA_AMOUNT + AMOUNT_PRE_EXTRA_AUDIENCE * extraAudience);
         }
-        return thisAmount + 300 * performance.getAudience();
+        return result + BASIC_AMOUNT_PRE_AUDIENCE * performance.getAudience();
     }
 }
