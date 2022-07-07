@@ -14,15 +14,15 @@ public enum PlayType {
         this.calculator = calculator;
     }
 
-    AbstractPerformanceCalculator getCalculator() {
-        return calculator;
-    }
-
     double getAmount(Performance performance) {
         return getCalculator().getAmount(performance);
     }
 
     double getVolumeCredits(Performance performance) {
         return getCalculator().getVolumeCredits(performance);
+    }
+
+    private AbstractPerformanceCalculator getCalculator() {
+        return calculator;
     }
 }
