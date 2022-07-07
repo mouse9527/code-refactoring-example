@@ -34,6 +34,28 @@ public class Invoice {
         this.performances = performances;
     }
 
+    public String getStatement(Map<String, Play> plays) {
+        return getCustomer() + formatPerformances(plays);
+    }
+
+    private StringBuilder formatPerformances(Map<String, Play> plays) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Performance performance : getPerformances()) {
+            Play play = plays.get(performance.getPlayId());
+            stringBuilder.append(String.format(" %s: %s (%d seats)\n", play.getName(), new Amount(AbstractPerformanceCalculator.of(play.getType()).getAmount(performance)).formatUSD(), performance.getAudience()));
+        }
+        return stringBuilder;
+    }
+
+    public Amount getTotalAmount(Map<String, Play> plays) {
+        int totalAmount = 0;
+        for (Performance performance : getPerformances()) {
+            Play play = plays.get(performance.getPlayId());
+            totalAmount += AbstractPerformanceCalculator.of(play.getType()).getAmount(performance);
+        }
+        return new Amount(totalAmount);
+    }
+
     public int getVolumeCredits(Map<String, Play> plays) {
         int volumeCredits = 0;
         for (Performance performance : getPerformances()) {
@@ -43,29 +65,4 @@ public class Invoice {
         return volumeCredits;
     }
 
-    public int getTotalAmount(Map<String, Play> plays) {
-        int totalAmount = 0;
-        for (Performance performance : getPerformances()) {
-            Play play = plays.get(performance.getPlayId());
-            totalAmount += AbstractPerformanceCalculator.of(play.getType()).getAmount(performance);
-        }
-        return totalAmount;
-    }
-
-    public StringBuilder formatPerformances(Map<String, Play> plays) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Performance performance : getPerformances()) {
-            Play play = plays.get(performance.getPlayId());
-            stringBuilder.append(String.format(" %s: %s (%d seats)\n", play.getName(), new Amount(AbstractPerformanceCalculator.of(play.getType()).getAmount(performance)).formatUSD(), performance.getAudience()));
-        }
-        return stringBuilder;
-    }
-
-    public String getStatement(Map<String, Play> plays) {
-        return getCustomer() + formatPerformances(plays);
-    }
-
-    public Amount getTotalAmountV2(Map<String, Play> plays) {
-        return new Amount(getTotalAmount(plays));
-    }
 }
