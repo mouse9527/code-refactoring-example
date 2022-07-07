@@ -55,6 +55,12 @@ public class Invoice {
         return new Amount(totalAmount);
     }
 
+    public Amount getTotalAmountV2(Map<String, Play> plays) {
+        Double totalAmount = getPerformances().stream().map(it -> plays.get(it.getPlayId()).getAmount(it).getAmount())
+                .reduce(0d, Double::sum);
+        return new Amount(totalAmount);
+    }
+
     public int getVolumeCredits(Map<String, Play> plays) {
         int volumeCredits = 0;
         for (Performance performance : getPerformances()) {
