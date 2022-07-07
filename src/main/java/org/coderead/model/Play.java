@@ -1,7 +1,6 @@
 package org.coderead.model;
 
 import org.coderead.Amount;
-import org.coderead.calculator.AbstractPerformanceCalculator;
 
 /**
  * 剧目
@@ -32,10 +31,10 @@ public class Play {
     }
 
     Amount getAmount(Performance performance) {
-        return new Amount(AbstractPerformanceCalculator.of(getType()).getAmount(performance));
+        return new Amount(PlayType.valueOf(getType()).getAmount(performance));
     }
 
     double getVolumeCredits(Performance performance) {
-        return AbstractPerformanceCalculator.of(getType()).getVolumeCredits(performance);
+        return PlayType.valueOf(getType()).getCalculator().getVolumeCredits(performance);
     }
 }
