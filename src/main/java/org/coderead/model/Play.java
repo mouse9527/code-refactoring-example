@@ -1,7 +1,5 @@
 package org.coderead.model;
 
-import org.coderead.Amount;
-
 /**
  * 剧目
  *

@@ -1,4 +1,4 @@
-package org.coderead;
+package org.coderead.model;
 
 import java.text.NumberFormat;
 import java.util.Locale;
