@@ -29,9 +29,9 @@ public class Main {
             "{\"playId\":\"othello\",\"audience\":40}" +
             "]" +
             "}]";
+
     public static void main(String[] args) {
-        TypeReference<Map<String, Play>> typeReference = new TypeReference<Map<String, Play>>(){};
-        Map<String, Play> playMap = JSONObject.parseObject(plays, typeReference);
+        Map<String, Play> playMap = createPlayMap();
         List<Invoice> invoiceList = JSONObject.parseArray(invoices, Invoice.class);
         for (Invoice invoice : invoiceList) {
             Statement statement = new Statement(invoice, playMap);
@@ -39,5 +39,10 @@ public class Main {
             System.out.println(result);
         }
 
+    }
+
+    private static Map<String, Play> createPlayMap() {
+        TypeReference<Map<String, Play>> typeReference = new TypeReference<Map<String, Play>>(){};
+        return JSONObject.parseObject(plays, typeReference);
     }
 }
