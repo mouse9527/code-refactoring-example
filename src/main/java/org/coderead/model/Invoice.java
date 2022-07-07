@@ -60,4 +60,12 @@ public class Invoice {
         }
         return stringBuilder;
     }
+
+    public String getStatement(Map<String, Play> plays) {
+        return getCustomer() + formatPerformances(plays);
+    }
+
+    public Amount getTotalAmountV2(Map<String, Play> plays) {
+        return new Amount(getTotalAmount(plays));
+    }
 }
