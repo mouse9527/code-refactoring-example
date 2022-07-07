@@ -24,4 +24,8 @@ public class PlayType {
     double getAmount(Performance performance) {
         return getCalculator().getAmount(performance);
     }
+
+    double getVolumeCredits(Performance performance) {
+        return getCalculator().getVolumeCredits(performance);
+    }
 }

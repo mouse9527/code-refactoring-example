@@ -35,6 +35,7 @@ public class Play {
     }
 
     double getVolumeCredits(Performance performance) {
-        return PlayType.valueOf(getType()).getCalculator().getVolumeCredits(performance);
+        return PlayType.valueOf(getType()).getVolumeCredits(performance);
     }
+
 }
