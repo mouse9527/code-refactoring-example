@@ -22,11 +22,10 @@ public class Statement {
     }
 
     public String show() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(String.format("Statement for %s", invoice.getStatement(plays)));
-        stringBuilder.append(String.format("Amount owed is %s\n", invoice.getTotalAmountV2(plays).formatUSD()));
-        stringBuilder.append(String.format("You earned %s credits\n", invoice.getVolumeCredits(plays)));
-        return stringBuilder.toString();
+        return String.format("%s%s%s",
+                String.format("Statement for %s", invoice.getStatement(plays)),
+                String.format("Amount owed is %s\n", invoice.getTotalAmountV2(plays).formatUSD()),
+                String.format("You earned %s credits\n", invoice.getVolumeCredits(plays)));
     }
 
 }
