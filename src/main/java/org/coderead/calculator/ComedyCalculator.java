@@ -8,6 +8,7 @@ public class ComedyCalculator extends AbstractPerformanceCalculator {
     private static final int BASIC_AMOUNT = 30000;
     private static final int BASIC_EXTRA_AMOUNT = 10000;
     private static final int AMOUNT_PRE_EXTRA_AUDIENCE = 500;
+    private static final int BASIC_AUDIENCE = 20;
 
     public ComedyCalculator() {
     }
@@ -25,11 +26,11 @@ public class ComedyCalculator extends AbstractPerformanceCalculator {
     }
 
     private int getExtraAmount(Performance performance) {
-        int extraAudience = performance.getAudience() - 20;
+        int extraAudience = performance.getAudience() - BASIC_AUDIENCE;
         if (extraAudience > 0) {
             return BASIC_EXTRA_AMOUNT + AMOUNT_PRE_EXTRA_AUDIENCE * extraAudience;
-        } else {
-            return 0;
         }
+
+        return 0;
     }
 }
