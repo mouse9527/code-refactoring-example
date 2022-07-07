@@ -42,7 +42,7 @@ public class StatementTest {
             "}";
 
     @Test
-    public void test() {
+    public void should_show_statement() {
         Statement statement = new Statement(createInvoice(), createPlayMap());
 
         String result = statement.show();
