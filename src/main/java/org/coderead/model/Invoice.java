@@ -47,16 +47,8 @@ public class Invoice {
     }
 
     public Amount getTotalAmount(Map<String, Play> plays) {
-        int totalAmount = 0;
-        for (Performance performance : getPerformances()) {
-            Play play = plays.get(performance.getPlayId());
-            totalAmount += play.getAmount(performance).getAmount();
-        }
-        return new Amount(totalAmount);
-    }
-
-    public Amount getTotalAmountV2(Map<String, Play> plays) {
-        Double totalAmount = getPerformances().stream().map(it -> plays.get(it.getPlayId()).getAmount(it).getAmount())
+        Double totalAmount = getPerformances().stream()
+                .map(it -> plays.get(it.getPlayId()).getAmount(it).getAmount())
                 .reduce(0d, Double::sum);
         return new Amount(totalAmount);
     }
