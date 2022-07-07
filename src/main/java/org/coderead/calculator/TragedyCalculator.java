@@ -5,6 +5,7 @@ import org.coderead.model.Performance;
 public class TragedyCalculator extends AbstractPerformanceCalculator {
 
     private static final int BASIC_AMOUNT = 40000;
+    private static final int BASIC_AUDIENCE = 30;
 
     public TragedyCalculator() {
     }
@@ -20,6 +21,6 @@ public class TragedyCalculator extends AbstractPerformanceCalculator {
     }
 
     private int getExtraAudience(Performance performance) {
-        return Math.max(performance.getAudience() - 30, 0);
+        return Math.max(performance.getAudience() - BASIC_AUDIENCE, 0);
     }
 }
