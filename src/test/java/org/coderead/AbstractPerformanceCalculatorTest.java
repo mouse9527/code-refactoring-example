@@ -13,6 +13,7 @@ public class AbstractPerformanceCalculatorTest {
     public void should_throw_exception_when_play_type_not_exist() {
         expectedException.expect(IllegalArgumentException.class);
         expectedException.expectMessage("Invalid type: not-exist-type.");
+
         AbstractPerformanceCalculator.of("not-exist-type");
     }
 }
