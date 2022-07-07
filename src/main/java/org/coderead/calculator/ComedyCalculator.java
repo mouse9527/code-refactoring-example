@@ -15,7 +15,7 @@ public class ComedyCalculator extends AbstractPerformanceCalculator {
     @Override
     public double getVolumeCredits(Performance performance) {
         int max = Math.max(performance.getAudience() - 30, 0);
-        double floor = Math.floor(performance.getAudience() / 5);
+        double floor = Math.floor(performance.getAudience() / 5d);
         return max + floor;
     }
 
