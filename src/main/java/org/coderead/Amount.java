@@ -14,7 +14,7 @@ public class Amount {
         return amount;
     }
 
-    String formatUSD() {
+    public String formatUSD() {
         return NumberFormat.getCurrencyInstance(new Locale("en", "US")).format(getAmount() / 100);
     }
 }

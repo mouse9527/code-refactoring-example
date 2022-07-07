@@ -1,5 +1,6 @@
 package org.coderead.model;
 
+import org.coderead.Amount;
 import org.coderead.calculator.AbstractPerformanceCalculator;
 
 import java.util.List;
@@ -49,5 +50,14 @@ public class Invoice {
             totalAmount += AbstractPerformanceCalculator.of(play.getType()).getAmount(performance);
         }
         return totalAmount;
+    }
+
+    public StringBuilder formatPerformances(Map<String, Play> plays) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Performance performance : getPerformances()) {
+            Play play = plays.get(performance.getPlayId());
+            stringBuilder.append(String.format(" %s: %s (%d seats)\n", play.getName(), new Amount(AbstractPerformanceCalculator.of(play.getType()).getAmount(performance)).formatUSD(), performance.getAudience()));
+        }
+        return stringBuilder;
     }
 }
