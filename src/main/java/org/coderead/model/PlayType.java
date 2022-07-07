@@ -2,15 +2,16 @@ package org.coderead.model;
 
 import org.coderead.calculator.AbstractPerformanceCalculator;
 
-public class PlayType {
+public enum PlayType {
+    tragedy("tragedy"),
+    comedy("comedy"),
+    action("action"),
+    love("love");
+
     private final String type;
 
-    public PlayType(String type) {
+    PlayType(String type) {
         this.type = type;
-    }
-
-    static PlayType valueOf(String type) {
-        return new PlayType(type);
     }
 
     public String getType() {
