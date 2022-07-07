@@ -11,6 +11,7 @@ public class Play {
     private String name;
 
     private String type;
+    private PlayType playType;
 
     public String getName() {
         return name;
@@ -26,14 +27,15 @@ public class Play {
 
     public void setType(String type) {
         this.type = type;
+        this.playType = PlayType.of(type);
     }
 
     Amount getAmount(Performance performance) {
-        return new Amount(PlayType.of(getType()).getAmount(performance));
+        return new Amount(playType.getAmount(performance));
     }
 
     double getVolumeCredits(Performance performance) {
-        return PlayType.of(getType()).getVolumeCredits(performance);
+        return playType.getVolumeCredits(performance);
     }
 
 }
