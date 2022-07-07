@@ -10,8 +10,7 @@ public class Play {
 
     private String name;
 
-    private String type;
-    private PlayType playType;
+    private PlayType type;
 
     public String getName() {
         return name;
@@ -22,20 +21,19 @@ public class Play {
     }
 
     public String getType() {
-        return type;
+        return type.name().toLowerCase();
     }
 
     public void setType(String type) {
-        this.type = type;
-        this.playType = PlayType.of(type);
+        this.type = PlayType.of(type);
     }
 
     Amount getAmount(Performance performance) {
-        return new Amount(playType.getAmount(performance));
+        return new Amount(type.getAmount(performance));
     }
 
     double getVolumeCredits(Performance performance) {
-        return playType.getVolumeCredits(performance);
+        return type.getVolumeCredits(performance);
     }
 
 }
