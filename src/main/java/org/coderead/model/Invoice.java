@@ -37,13 +37,17 @@ public class Invoice {
         return getCustomer() + formatPerformances(plays);
     }
 
-    private StringBuilder formatPerformances(Map<String, Play> plays) {
+    private String formatPerformances(Map<String, Play> plays) {
         StringBuilder stringBuilder = new StringBuilder();
         for (Performance performance : getPerformances()) {
             Play play = plays.get(performance.getPlayId());
-            stringBuilder.append(String.format(" %s: %s (%d seats)\n", play.getName(), play.getAmount(performance).formatUSD(), performance.getAudience()));
+            stringBuilder.append(formatPerformances(performance, play));
         }
-        return stringBuilder;
+        return stringBuilder.toString();
+    }
+
+    private String formatPerformances(Performance performance, Play play) {
+        return String.format(" %s: %s (%d seats)\n", play.getName(), play.getAmount(performance).formatUSD(), performance.getAudience());
     }
 
     public Amount getTotalAmount(Map<String, Play> plays) {
