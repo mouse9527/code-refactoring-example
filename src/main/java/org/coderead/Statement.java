@@ -5,8 +5,6 @@ import org.coderead.model.Invoice;
 import org.coderead.model.Performance;
 import org.coderead.model.Play;
 
-import java.text.NumberFormat;
-import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -28,7 +26,7 @@ public class Statement {
     public String show() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(String.format("Statement for %s", invoice.getCustomer())).append(formatPerformances());
-        stringBuilder.append(String.format("Amount owed is %s\n", formatUSD(invoice.getTotalAmount(plays))));
+        stringBuilder.append(String.format("Amount owed is %s\n", new Amount(invoice.getTotalAmount(plays)).formatUSD()));
         stringBuilder.append(String.format("You earned %s credits\n", invoice.getVolumeCredits(plays)));
         return stringBuilder.toString();
     }
@@ -43,11 +41,7 @@ public class Statement {
     }
 
     private String formatPerformance(Performance performance, Play play) {
-        return String.format(" %s: %s (%d seats)\n", play.getName(), formatUSD(AbstractPerformanceCalculator.of(play.getType()).getAmount(performance)), performance.getAudience());
-    }
-
-    private String formatUSD(double amount) {
-        return NumberFormat.getCurrencyInstance(new Locale("en", "US")).format(amount / 100);
+        return String.format(" %s: %s (%d seats)\n", play.getName(), new Amount(AbstractPerformanceCalculator.of(play.getType()).getAmount(performance)).formatUSD(), performance.getAudience());
     }
 
 }
