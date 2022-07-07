@@ -3,15 +3,19 @@ package org.coderead.model;
 import org.coderead.calculator.*;
 
 public enum PlayType {
-    tragedy(new TragedyCalculator()),
-    comedy(new ComedyCalculator()),
-    action(new ActionCalculator()),
-    love(new LoveCalculator());
+    TRAGEDY(new TragedyCalculator()),
+    COMEDY(new ComedyCalculator()),
+    ACTION(new ActionCalculator()),
+    LOVE(new LoveCalculator());
 
     private final AbstractPerformanceCalculator calculator;
 
     PlayType(AbstractPerformanceCalculator calculator) {
         this.calculator = calculator;
+    }
+
+    public static PlayType of(String type) {
+        return valueOf(type.toUpperCase());
     }
 
     double getAmount(Performance performance) {

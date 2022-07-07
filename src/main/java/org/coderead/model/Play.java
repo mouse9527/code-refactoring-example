@@ -31,11 +31,11 @@ public class Play {
     }
 
     Amount getAmount(Performance performance) {
-        return new Amount(PlayType.valueOf(getType()).getAmount(performance));
+        return new Amount(PlayType.of(getType()).getAmount(performance));
     }
 
     double getVolumeCredits(Performance performance) {
-        return PlayType.valueOf(getType()).getVolumeCredits(performance);
+        return PlayType.of(getType()).getVolumeCredits(performance);
     }
 
 }
