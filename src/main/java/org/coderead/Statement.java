@@ -2,6 +2,7 @@ package org.coderead;
 
 import org.coderead.model.Invoice;
 import org.coderead.model.Play;
+import org.coderead.model.Plays;
 
 import java.util.Map;
 
@@ -25,7 +26,7 @@ public class Statement {
         return String.format("%s%s%s",
                 String.format("Statement for %s", invoice.getStatement(plays)),
                 String.format("Amount owed is %s\n", invoice.getTotalAmount(plays).formatUSD()),
-                String.format("You earned %s credits\n", invoice.getVolumeCredits(plays)));
+                String.format("You earned %s credits\n", invoice.getVolumeCredits(new Plays(plays))));
     }
 
 }
