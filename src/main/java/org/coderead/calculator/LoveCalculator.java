@@ -2,7 +2,7 @@ package org.coderead.calculator;
 
 import org.coderead.model.Performance;
 
-public class LoveCalculator extends AbstractPerformanceCalculator { 
+public class LoveCalculator extends AbstractPerformanceCalculator {
 
     @Override
     public double getVolumeCredits(Performance performance) {
@@ -11,10 +11,10 @@ public class LoveCalculator extends AbstractPerformanceCalculator {
 
     @Override
     public double getAmount(Performance performance) {
-        int thisAmount;
-        thisAmount = 40000;
-        if (performance.getAudience() > 30) {
-            thisAmount += 1000 * (performance.getAudience() - 30);
+        int thisAmount = 40000;
+        int extraAudience = performance.getAudience() - 30;
+        if (extraAudience > 0) {
+            thisAmount += 1000 * extraAudience;
         }
         return thisAmount;
     }
