@@ -1,5 +1,8 @@
 package org.coderead.model;
 
+import org.coderead.Amount;
+import org.coderead.calculator.AbstractPerformanceCalculator;
+
 /**
  * 剧目
  *
@@ -26,5 +29,9 @@ public class Play {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    Amount getAmount(Performance performance) {
+        return new Amount(AbstractPerformanceCalculator.of(getType()).getAmount(performance));
     }
 }

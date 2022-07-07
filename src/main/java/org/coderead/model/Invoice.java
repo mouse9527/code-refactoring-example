@@ -42,7 +42,7 @@ public class Invoice {
         StringBuilder stringBuilder = new StringBuilder();
         for (Performance performance : getPerformances()) {
             Play play = plays.get(performance.getPlayId());
-            stringBuilder.append(String.format(" %s: %s (%d seats)\n", play.getName(), new Amount(AbstractPerformanceCalculator.of(play.getType()).getAmount(performance)).formatUSD(), performance.getAudience()));
+            stringBuilder.append(String.format(" %s: %s (%d seats)\n", play.getName(), play.getAmount(performance).formatUSD(), performance.getAudience()));
         }
         return stringBuilder;
     }
@@ -51,7 +51,7 @@ public class Invoice {
         int totalAmount = 0;
         for (Performance performance : getPerformances()) {
             Play play = plays.get(performance.getPlayId());
-            totalAmount += AbstractPerformanceCalculator.of(play.getType()).getAmount(performance);
+            totalAmount += play.getAmount(performance).getAmount();
         }
         return new Amount(totalAmount);
     }
