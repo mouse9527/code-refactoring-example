@@ -15,7 +15,11 @@ public enum PlayType {
     }
 
     public static PlayType of(String type) {
-        return valueOf(type.toUpperCase());
+        try {
+            return valueOf(type.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Invalid type: " + type + ".");
+        }
     }
 
     double getAmount(Performance performance) {
