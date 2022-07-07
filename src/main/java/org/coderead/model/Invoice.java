@@ -61,4 +61,10 @@ public class Invoice {
         return volumeCredits;
     }
 
+    public int getVolumeCreditsV2(Map<String, Play> plays) {
+        Double volumeCredits = getPerformances().stream()
+                .map(it -> plays.get(it.getPlayId()).getVolumeCredits(it))
+                .reduce(0d, Double::sum);
+        return volumeCredits.intValue();
+    }
 }
