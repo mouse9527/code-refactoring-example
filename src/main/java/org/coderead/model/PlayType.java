@@ -1,25 +1,21 @@
 package org.coderead.model;
 
-import org.coderead.calculator.AbstractPerformanceCalculator;
+import org.coderead.calculator.*;
 
 public enum PlayType {
-    tragedy("tragedy"),
-    comedy("comedy"),
-    action("action"),
-    love("love");
+    tragedy(new TragedyCalculator()),
+    comedy(new ComedyCalculator()),
+    action(new ActionCalculator()),
+    love(new LoveCalculator());
 
-    private final String type;
+    private final AbstractPerformanceCalculator calculator;
 
-    PlayType(String type) {
-        this.type = type;
-    }
-
-    public String getType() {
-        return type;
+    PlayType(AbstractPerformanceCalculator calculator) {
+        this.calculator = calculator;
     }
 
     AbstractPerformanceCalculator getCalculator() {
-        return AbstractPerformanceCalculator.of(getType());
+        return calculator;
     }
 
     double getAmount(Performance performance) {
