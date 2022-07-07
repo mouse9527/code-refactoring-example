@@ -16,4 +16,12 @@ public class Plays {
     double getVolumeCredits(Performance it) {
         return getPlays().get(it.getPlayId()).getVolumeCredits(it);
     }
+
+    Play getPlay(Performance it) {
+        return getPlays().get(it.getPlayId());
+    }
+
+    Amount getAmount(Performance it) {
+        return getPlays().get(it.getPlayId()).getAmount(it);
+    }
 }

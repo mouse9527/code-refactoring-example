@@ -1,7 +1,6 @@
 package org.coderead.model;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -32,20 +31,20 @@ public class Invoice {
         this.performances = performances;
     }
 
-    public String getStatement(Map<String, Play> plays) {
+    public String getStatement(Plays plays) {
         return getCustomer() + formatPerformances(plays);
     }
 
-    private String formatPerformances(Map<String, Play> plays) {
+    private String formatPerformances(Plays plays) {
         return getPerformances().stream()
-                .map(it -> it.formatPerformances(plays.get(it.getPlayId())))
+                .map(it -> it.formatPerformances(plays.getPlay(it)))
                 .collect(Collectors.joining());
     }
 
 
-    public Amount getTotalAmount(Map<String, Play> plays) {
+    public Amount getTotalAmount(Plays plays) {
         Double totalAmount = getPerformances().stream()
-                .map(it -> plays.get(it.getPlayId()).getAmount(it).getAmount())
+                .map(it -> plays.getAmount(it).getAmount())
                 .reduce(0d, Double::sum);
         return new Amount(totalAmount);
     }

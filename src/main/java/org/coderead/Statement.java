@@ -23,10 +23,11 @@ public class Statement {
     }
 
     public String show() {
+        Plays plays = new Plays(this.plays);
         return String.format("%s%s%s",
                 String.format("Statement for %s", invoice.getStatement(plays)),
                 String.format("Amount owed is %s\n", invoice.getTotalAmount(plays).formatUSD()),
-                String.format("You earned %s credits\n", invoice.getVolumeCredits(new Plays(plays))));
+                String.format("You earned %s credits\n", invoice.getVolumeCredits(plays)));
     }
 
 }
