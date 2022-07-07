@@ -2,7 +2,7 @@ package org.coderead.calculator;
 
 import org.coderead.model.Performance;
 
-public class LoveCalculator extends AbstractPerformanceCalculator {
+public class LoveCalculator implements PerformanceCalculator {
 
     private static final int BASIC_AMOUNT = 40000;
     private static final int AMOUNT_PRE_EXTRA_AUDIENCE = 1000;

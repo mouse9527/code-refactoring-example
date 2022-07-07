@@ -2,7 +2,7 @@ package org.coderead.calculator;
 
 import org.coderead.model.Performance;
 
-public class TragedyCalculator extends AbstractPerformanceCalculator {
+public class TragedyCalculator implements PerformanceCalculator {
 
     private static final int BASIC_AMOUNT = 40000;
     private static final int BASIC_AUDIENCE = 30;

@@ -8,9 +8,9 @@ public enum PlayType {
     ACTION(new ActionCalculator()),
     LOVE(new LoveCalculator());
 
-    private final AbstractPerformanceCalculator calculator;
+    private final PerformanceCalculator calculator;
 
-    PlayType(AbstractPerformanceCalculator calculator) {
+    PlayType(PerformanceCalculator calculator) {
         this.calculator = calculator;
     }
 
@@ -30,7 +30,7 @@ public enum PlayType {
         return getCalculator().getVolumeCredits(performance);
     }
 
-    private AbstractPerformanceCalculator getCalculator() {
+    private PerformanceCalculator getCalculator() {
         return calculator;
     }
 }
